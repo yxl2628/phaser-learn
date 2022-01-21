@@ -2,12 +2,11 @@
  * @Description: 资源预加载的loading页面
  * @Author: yang.xiaolong
  * @Date: 2022-01-20 16:48:32
- * @LastEditTime: 2022-01-20 19:07:48
+ * @LastEditTime: 2022-01-21 10:11:18
  * @LastEditors: yang.xiaolong
  */
 import Phaser from 'phaser'
-import config from '../config'
-import { fieLoadFunc } from '../utils'
+import { fieLoadFunc, getWH } from '../utils'
 
 export default class PreloadState extends Phaser.State {
   init () {
@@ -19,7 +18,9 @@ export default class PreloadState extends Phaser.State {
     // 加载资源的动画
     this.loadProgress()
   }
-  create () {}
+  create () {
+    this.game.state.start('NavState')
+  }
   update () {}
   // 加载资源
   loadAssets () {
@@ -53,15 +54,7 @@ export default class PreloadState extends Phaser.State {
   // 加载动画
   loadProgress () {
     // 设置背景图
-    const docElement = document.documentElement
-    const width =
-      docElement.clientWidth > config.gameWidth
-        ? config.gameWidth
-        : docElement.clientWidth
-    const height =
-      docElement.clientHeight > config.gameHeight
-        ? config.gameHeight
-        : docElement.clientHeight
+    const { width, height } = getWH()
     const bgpreloadImg = this.game.add.image(0, 0, 'bgpreload')
     bgpreloadImg.width = width
     bgpreloadImg.height = height

@@ -2,9 +2,11 @@
  * @Description: 工具类
  * @Author: yang.xiaolong
  * @Date: 2022-01-20 17:30:08
- * @LastEditTime: 2022-01-20 19:00:12
+ * @LastEditTime: 2022-01-21 10:10:45
  * @LastEditors: yang.xiaolong
  */
+import config from '../config'
+
 export function fieLoadFunc (game, completeFunc) {
   // 加载资源失败的错误捕获
   const errorList = []
@@ -21,4 +23,17 @@ export function fieLoadFunc (game, completeFunc) {
       }
     }
   })
+}
+
+export function getWH () {
+  const docElement = document.documentElement
+  const width =
+    docElement.clientWidth > config.gameWidth
+      ? config.gameWidth
+      : docElement.clientWidth
+  const height =
+    docElement.clientHeight > config.gameHeight
+      ? config.gameHeight
+      : docElement.clientHeight
+  return { width, height }
 }
