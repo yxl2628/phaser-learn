@@ -2,7 +2,7 @@
  * @Description: 资源预加载的loading页面
  * @Author: yang.xiaolong
  * @Date: 2022-01-20 16:48:32
- * @LastEditTime: 2022-01-21 10:11:18
+ * @LastEditTime: 2022-03-14 17:28:10
  * @LastEditors: yang.xiaolong
  */
 import Phaser from 'phaser'
@@ -39,6 +39,19 @@ export default class PreloadState extends Phaser.State {
     this.game.load.image('buttonlan', 'assets/images/buttonlan.png')
     this.game.load.image('back', 'assets/images/back.png')
     this.game.load.image('btnhui', 'assets/images/btnhui.png')
+
+    this.game.load.audio('a0', 'assets/audio/0/a0.mp3')
+    this.game.load.audio('b0', 'assets/audio/0/b0.mp3')
+    this.game.load.audio('lb0', 'assets/audio/0/lb0.mp3')
+
+    const songArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'hc', 'hf', 'la', 'lb', 'le']
+    for (let i = 1; i < 8; i++) {
+      songArray.forEach(song => {
+        this.game.load.audio(`${song}${i}`, `assets/audio/${i}/${song}${i}.mp3`)
+      })
+    }
+
+    this.game.load.audio('c8', 'assets/audio/8/c8.mp3')
 
     fieLoadFunc(this.game, (progress) => {
       // 根据进度计算进度条遮罩的矩形的宽度
